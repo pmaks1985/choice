@@ -7,11 +7,12 @@ $(function () {
 		data: {},
 		success: function (data) {
 			$.each(data.questions, function (id, question) {
-				$("#question1 .questionText").html(question.question);
+				$("#question .questionText").html(question.question);
 				$.each(question.answers, function (id, answers) {
-					$("#question1 .answer").append("<input type='radio' name='answer' id='" + answers.id + "'><label for='" + answers.id + "'>" + answers.answer + "</label><br>")
+					$("#question .questionAnswer").append("<input type='radio' name='answer' id='" + answers.id + "'><label for='" + answers.id + "'>" + answers.answer + "</label><br>")
 				})
 			});
+			$("#nextQuestion").hide();
 		}
 	});
 
@@ -34,8 +35,9 @@ $(function () {
 					html = html + '</div>';
 					$(".next__question").append(html);
 				});
+				$("#nextQuestion").show();
 				$(".question:first").show();
-				$("#question1").hide();
+				$("#question").hide();
 				updateQuestionNumber();
 			}
 		});
@@ -53,7 +55,7 @@ $(function () {
 			program.normativeDocument + "</td>" + "<td>" + program.inspector + "</td></tr>");
 	}
 
-	$("#next2").click(function () {
+	$("#nextQuestion").click(function () {
 		let nextQuestion = $(".question:visible").hide().next();
 		nextQuestion.show();
 		if (nextQuestion.next().length == 0) {
