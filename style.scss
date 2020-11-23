@@ -15,3 +15,50 @@
 #get__value {
     display: none;
 }
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.caption {
+    padding: 10px;
+    color: white;
+    background: #0b48a0;
+    font-size: 18px;
+    text-align: left;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+th {
+    border: 1px solid #202020;
+    padding: 10px;
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #202020;
+}
+
+tr {
+    border: 1px solid #202020;
+}
+
+table thead tr td {
+    border: 1px solid #202020;
+}
+
+table tbody tr td {
+    border: 1px solid #202020;
+}
+
+.who_is_studying {
+    width: 10%;
+}
+
+
+.program {
+    width: 35%;
+}
