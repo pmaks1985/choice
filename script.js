@@ -16,7 +16,7 @@ $(function () {
 		}
 	});
 
-	$("#next1").click(function () {
+	$("#next").click(function () {
 		var answerId = $('input[type=radio][name=answer]:checked').attr('id');
 		$.ajax({
 			url: 'https://abdpo-lk.ru/lk/ChoosingProgramAlgo/choosingprogramquestions_api_ext.php?action=getQuestions',
