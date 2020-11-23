@@ -47,6 +47,12 @@ $(function () {
 		$('#questionNumber').html('Вопрос <strong>' + currentNumber + '</strong> из <strong>' + totalCount + '</strong>');
 	}
 
+	function addProgramToTable(table, program, profession) {
+		table.append("<tr class=\"program\"><td>" + ($("#programType" + program.programTypeId + " tr.program").length + 1) + "</td>" + "<td>" + profession.title + "<br>" + profession.comment + "</td>" +
+			"<td>" + program.programTitle + "</td>" + "<td>" + program.programText + "</td>" + "<td>Как часто?</td>" + "<td>" +
+			program.normativeDocument + "</td>" + "<td>" + program.inspector + "</td></tr>");
+	}
+
 	$("#next2").click(function () {
 		let nextQuestion = $(".question:visible").hide().next();
 		nextQuestion.show();
@@ -75,33 +81,25 @@ $(function () {
 				"answers": finalСhoice
 			}),
 			success: function (data) {
-				var i = 0;
 				$.each(data.programs, function (id, program) {
 					$.each(program.professions, function (id, profession) {
-						i++;
-						/*if (program.normativeDocument === "null") {
-							program.normativeDocument == "";
+
+						/*if (program.normativeDocument === null) {
+							normativeDocument == "";
 						}
-						if (program.inspector === "null") {
-							program.inspector == "";
+						if (program.inspector === null) {
+							inspector == "";
 						}*/
-						var tableId = [];
-						var tableId = $(".table").prop("id");
-						console.log(tableId);
-						if ($.trim($('table').attr('id'))) {
-
-						}
-
-						if ($("table").is("#" + program.programTypeId)) {
-							$(".table").append("<tr><td>" + i + "</td>" + "<td>" + profession.title + "<br>" + profession.comment + "</td>" +
-								"<td>" + program.programTitle + "</td>" + "<td>" + program.programText + "</td>" + "<td>Как часто?</td>" + "<td>" +
-								program.normativeDocument + "</td>" + "<td>" + program.inspector + "</td></tr>");
+						// ищем таблицу для нужного типа программ
+						var table = $("#programType" + program.programTypeId);
+						if (table.length == 0) {
+							// если такая таблица не найдена, то
+							$(".result").append("<table class='table table-bordered' id='programType" + program.programTypeId + "'><tr><td colspan='7'>" +
+								program.programTypeFullTitle + "</td></tr><tr><td rowspan='2'>№</td><td rowspan='2'>Кто учится?</td><td colspan='2'>Программа</td><td rowspan='2'>Как часто?</td><td rowspan='2'>Нормативное обоснование</td><td rowspan='2'>Кто проверяет?</td></tr><tr><td>Код</td><td>Название программы</td></tr>");
+							addProgramToTable($("#programType" + program.programTypeId), program, profession);
 						} else {
-							$(".result").append("<table class='table table-bordered' id='" + program.programTypeId + "'><tr><td colspan='7'>" +
-								program.programTypeTitle + "</td></tr><tr><td rowspan='2'>№</td><td rowspan='2'>Кто учится?</td><td colspan='2'>Программа</td><td rowspan='2'>Как часто?</td><td rowspan='2'>Нормативное обоснование</td><td rowspan='2'>Кто проверяет?</td></tr><tr><td>Код</td><td>Название программы</td></tr><tr><td>" +
-								i + "</td>" + "<td>" + profession.title + "<br>" + profession.comment + "</td>" +
-								"<td>" + program.programTitle + "</td>" + "<td>" + program.programText + "</td>" + "<td>Как часто?</td>" + "<td>" +
-								program.normativeDocument + "</td>" + "<td>" + program.inspector + "</td></tr></table>");
+							// иначе добавляем в эту конкретную таблицу строку
+							addProgramToTable(table, program, profession);
 						}
 					});
 				});
