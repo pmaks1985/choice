@@ -85,13 +85,12 @@ $(function () {
 			success: function (data) {
 				$.each(data.programs, function (id, program) {
 					$.each(program.professions, function (id, profession) {
-
-						/*if (program.normativeDocument === null) {
-							normativeDocument == "";
+						if (!program.normativeDocument) {
+							program.normativeDocument = "";
 						}
-						if (program.inspector === null) {
-							inspector == "";
-						}*/
+						if (!program.inspector) {
+							program.inspector = "";
+						}
 						// ищем таблицу для нужного типа программ
 						var table = $("#programType" + program.programTypeId);
 						if (table.length == 0) {
