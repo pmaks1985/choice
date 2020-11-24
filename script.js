@@ -129,7 +129,7 @@ $(function () {
 
 											if (table.length == 0) {
 												// если такая таблица не найдена, то
-												$(".result").append("<table class='table table-bordered' id='programType" + program.programTypeId + "'><caption class='caption'>" + program.programTypeFullTitle + "</caption><tr><th rowspan='2'>№</th><th rowspan='2' class='who_is_studying'>Кто учится?</th><th colspan='2' class='program'>Программа</th><th rowspan='2'>Как часто?</th><th rowspan='2'>Нормативное обоснование</th><th rowspan='2'>Кто проверяет?</th></tr><tr><th>Код</th><th>Название программы</th></tr>");
+												$(".result").append("<table class='table table-bordered' id='programType" + program.programTypeId + "'><caption class='caption'>" + program.programTypeFullTitle + "</caption><tr><th rowspan='2' class='number'>№</th><th rowspan='2' class='who_is_studying'>Кто учится?</th><th colspan='2'>Программа</th><th rowspan='2' class='how_often'>Как часто?</th><th rowspan='2' class='norma'>Нормативное обоснование</th><th rowspan='2' class='checking'>Кто проверяет?</th></tr><tr><th class='code'>Код</th><th class='program'>Название программы</th></tr>");
 												addProgramToTable($("#programType" + program.programTypeId), program, profession);
 											} else {
 												// иначе добавляем в эту конкретную таблицу строку
@@ -146,7 +146,6 @@ $(function () {
 					}
 
 				);
-
 			}
 
 		);
