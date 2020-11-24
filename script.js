@@ -26,6 +26,10 @@ $(function () {
 
 		);
 
+		/*$("input[type=radio][name=answer]").on("change", function () { //проверка, выбран radio или нет
+			$("#next").prop("disabled", false);
+		}); */
+
 		$("#next").click(function () {
 				var answerId = $('input[type=radio][name=answer]:checked').attr('id');
 
