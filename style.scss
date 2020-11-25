@@ -1,3 +1,5 @@
+$borderColor: #a9a9a9;
+
 * {
     padding: 0;
     margin: 0;
@@ -32,26 +34,26 @@
 }
 
 th {
-    border: 1px solid #202020;
+    border: 1px solid $borderColor;
     padding: 10px;
     text-align: left;
 }
 
 td {
     padding: 10px;
-    border: 1px solid #202020;
+    border: 1px solid $borderColor2020;
 }
 
 tr {
-    border: 1px solid #202020;
+    border: 1px solid $borderColor;
 }
 
 table thead tr td {
-    border: 1px solid #202020;
+    border: 1px solid $borderColor;
 }
 
 table tbody tr td {
-    border: 1px solid #202020;
+    border: 1px solid $borderColor;
 }
 
 .who_is_studying {
