@@ -12,6 +12,7 @@ $borderColor: #a9a9a9;
 
 .question {
     display: none;
+    font-weight: normal !important;
 }
 
 #get__value {
@@ -30,7 +31,6 @@ $borderColor: #a9a9a9;
     font-size: 18px;
     text-align: left;
     font-weight: bold;
-    border-radius: 3px;
 }
 
 th {
@@ -41,7 +41,7 @@ th {
 
 td {
     padding: 10px;
-    border: 1px solid $borderColor2020;
+    border: 1px solid $borderColor;
 }
 
 tr {

@@ -10,6 +10,7 @@
 
 .question {
   display: none;
+  font-weight: normal !important;
 }
 
 #get__value {
@@ -28,30 +29,29 @@
   font-size: 18px;
   text-align: left;
   font-weight: bold;
-  border-radius: 3px;
 }
 
 th {
-  border: 1px solid #202020;
+  border: 1px solid #a9a9a9;
   padding: 10px;
   text-align: left;
 }
 
 td {
   padding: 10px;
-  border: 1px solid #202020;
+  border: 1px solid #a9a9a9;
 }
 
 tr {
-  border: 1px solid #202020;
+  border: 1px solid #a9a9a9;
 }
 
 table thead tr td {
-  border: 1px solid #202020;
+  border: 1px solid #a9a9a9;
 }
 
 table tbody tr td {
-  border: 1px solid #202020;
+  border: 1px solid #a9a9a9;
 }
 
 .who_is_studying {
