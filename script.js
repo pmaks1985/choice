@@ -26,9 +26,9 @@ $(function () {
 
 		);
 
-		/*$("input[type=radio][name=answer]").on("change", function () { //проверка, выбран radio или нет
+		$(".questionAnswer").on("change", "input[type=radio][name=answer]", function () {
 			$("#next").prop("disabled", false);
-		}); */
+		});
 
 		$("#next").click(function () {
 				var answerId = $('input[type=radio][name=answer]:checked').attr('id');
