@@ -26,7 +26,7 @@ $(function () {
 
 		);
 
-		$(".questionAnswer").on("change", "input[type=radio][name=answer]", function () { //проверка, выбран radio или нет
+		$(".questionAnswer").on("change", "input[type=radio][name=answer]", function () { //проверка, выбран radio или нет для #next
 			$("#next").prop("disabled", false);
 		});
 
@@ -69,6 +69,10 @@ $(function () {
 			}
 
 		);
+
+		$(".question").on("change", "input[type=radio]", function () { //проверка, выбран radio или нет для #nextQuestion
+			$("#nextQuestion").prop("disabled", false);
+		});
 
 		function updateQuestionNumber() {
 			let totalCount = $(".question").length;
