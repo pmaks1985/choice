@@ -13,7 +13,7 @@ $(function () {
 							$("#question .questionText").html(question.question);
 
 							$.each(question.answers, function (id, answers) {
-									$("#question .questionAnswer").append("<input type='radio' name='answer' id='" + answers.id + "'><label for='" + answers.id + "'>" + answers.answer + "</label><br>")
+									$("#question .questionAnswer").append("<label><input type='radio' name='answer' id='" + answers.id + "'>" + answers.answer + "</label><br>")
 								}
 
 							)
@@ -26,7 +26,7 @@ $(function () {
 
 		);
 
-		$(".questionAnswer").on("change", "input[type=radio][name=answer]", function () {
+		$(".questionAnswer").on("change", "input[type=radio][name=answer]", function () { //проверка, выбран radio или нет для #next
 			$("#next").prop("disabled", false);
 		});
 
@@ -69,6 +69,10 @@ $(function () {
 			}
 
 		);
+
+		$(".question").on("change", "input[type=radio]", function () { //проверка, выбран radio или нет для #nextQuestion
+			$("#nextQuestion").prop("disabled", false);
+		});
 
 		function updateQuestionNumber() {
 			let totalCount = $(".question").length;
