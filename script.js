@@ -81,7 +81,7 @@ $(function () {
 		}
 
 		function addProgramToTable(table, program, profession) {
-			table.append("<tr class=\"program\"><td>" + ($("#programType" + program.programTypeId + " tr.program").length + 1) + "</td>" + "<td>" + profession.title + "<br>" + profession.comment + "</td>" + "<td>" + program.programTitle + "</td>" + "<td>" + program.programText + "</td>" + "<td>Как часто?</td>" + "<td>" + program.normativeDocument + "</td>" + "<td>" + program.inspector + "</td></tr>");
+			table.append("<tr class=\"program\"><td>" + ($("#programType" + program.programTypeId + " tr.program").length + 1) + "</td>" + "<td>" + profession.title + "<br>" + profession.comment + "</td>" + "<td>" + program.programTitle + "</td>" + "<td>" + program.programText + "</td>" + "<td>" + program.programExpire + "</td>" + "<td>" + program.normativeDocument + "</td>" + "<td>" + program.inspector + "</td></tr>");
 		}
 
 		$("#nextQuestion").click(function () {
