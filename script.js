@@ -49,7 +49,7 @@ $(function () {
 									let html = '<div class="question" data-num="' + id + '">' + question.question + '<br>';
 
 									$.each(question.answers, function (id, answer) {
-											html = html + "<input type='radio' name='" + question.id + "' id='" + answer.id + "'><label for='" + answer.id + "'>" + answer.answer + "</label><br>";
+											html = html + "<label><input type='radio' name='" + question.id + "' id='" + answer.id + "'>" + answer.answer + "</label><br>";
 										}
 
 									);

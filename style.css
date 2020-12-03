@@ -81,4 +81,8 @@ table tbody tr td {
 .code {
   width: 70px;
 }
+
+input[type=radio] {
+  margin-right: 5px;
+}
 /*# sourceMappingURL=style.css.map */
