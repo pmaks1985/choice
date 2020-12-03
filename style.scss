@@ -1,5 +1,3 @@
-$borderColor: #a9a9a9;
-
 * {
     padding: 0;
     margin: 0;
@@ -34,30 +32,30 @@ $borderColor: #a9a9a9;
 }
 
 th {
-    border: 1px solid $borderColor;
+    border: 1px solid #a9a9a9;
     padding: 10px;
     text-align: left;
 }
 
 td {
     padding: 10px;
-    border: 1px solid $borderColor;
+    border: 1px solid #a9a9a9;
 }
 
 tr {
-    border: 1px solid $borderColor;
+    border: 1px solid #a9a9a9;
 }
 
 table thead tr td {
-    border: 1px solid $borderColor;
+    border: 1px solid #a9a9a9;
 }
 
 table tbody tr td {
-    border: 1px solid $borderColor;
+    border: 1px solid #a9a9a9;
 }
 
 .who_is_studying {
-    width: 100px;
+    min-width: 125px;
 }
 
 .program {
@@ -81,7 +79,7 @@ table tbody tr td {
 }
 
 .code {
-    width: 70px;
+    min-width: 75px;
 }
 
 input[type=radio] {

@@ -55,7 +55,7 @@ table tbody tr td {
 }
 
 .who_is_studying {
-  width: 100px;
+  min-width: 125px;
 }
 
 .program {
@@ -79,7 +79,7 @@ table tbody tr td {
 }
 
 .code {
-  width: 70px;
+  min-width: 75px;
 }
 
 input[type=radio] {
