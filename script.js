@@ -46,8 +46,12 @@ $(function () {
 						),
 						success: function (data) {
 							$.each(data.questions, function (id, question) {
-									let html = '<div class="question" data-num="' + id + '">' + question.question + '<br>';
-
+									if (question.comment) {
+										var comment = "<small>" + question.comment + "</small><br>";
+									} else {
+										var comment = "";
+									}
+									let html = '<div class="question" data-num="' + id + '">' + question.question + '<br>' + comment;
 									$.each(question.answers, function (id, answer) {
 											html = html + "<label><input type='radio' name='" + question.id + "' id='" + answer.id + "'>" + answer.answer + "</label><br>";
 										}
