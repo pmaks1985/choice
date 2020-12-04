@@ -88,15 +88,15 @@ $(function () {
 			if (program.programExpire == "0") {
 				var year = "Бессрочно";
 			} else if (program.programExpire == "5") {
-				var year = " лет";
+				var year = "1 раз в " + program.programExpire + " лет";
 			} else if (program.programExpire == "1") {
-				var year = " год"
+				var year = "1 раз в год"
 			} else {
-				var year = " года";
+				var year = "1 раз в " + program.programExpire + " года";
 			}
 			table.append("<tr class=\"program\"><td>" + ($("#programType" + program.programTypeId + " tr.program").length + 1) +
 				"</td>" + "<td>" + profession.title + "<br>" + profession.comment + "</td>" + "<td>" + program.programTitle + "</td>" +
-				"<td>" + program.programText + "</td>" + "<td>" + "1 раз в " + program.programExpire + year + "</td>" + "<td>" + program.normativeDocument +
+				"<td>" + program.programText + "</td>" + "<td>" + year + "</td>" + "<td>" + program.normativeDocument +
 				"</td>" + "<td>" + program.inspector + "</td></tr>");
 		}
 
