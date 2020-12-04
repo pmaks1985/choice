@@ -85,7 +85,6 @@ $(function () {
 		}
 
 		function addProgramToTable(table, program, profession) {
-			var year;
 			if (program.programExpire == "0") {
 				var year = "Бессрочно";
 			} else if (program.programExpire == "5") {
