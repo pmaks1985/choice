@@ -74,9 +74,17 @@ $(function () {
 
 		);
 
-		$(".question").on("change", "input[type=radio]", function () { //проверка, выбран radio или нет для #nextQuestion
+
+		// $(".question").each(function () {
+
+		// });
+
+
+		$(".question:visible").on("change", "input[type=radio]", function () { //проверка, выбран radio или нет для #nextQuestion
 			$("#nextQuestion").prop("disabled", false);
 		});
+
+
 
 		function updateQuestionNumber() {
 			let totalCount = $(".question").length;
