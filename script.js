@@ -80,7 +80,7 @@ $(function () {
 		// });
 
 
-		$(".question:visible").on("change", "input[type=radio]", function () { //проверка, выбран radio или нет для #nextQuestion
+		$(".question").on("click", "label input[type=radio]", function () { //проверка, выбран radio или нет для #nextQuestion
 			$("#nextQuestion").prop("disabled", false);
 		});
 
@@ -90,6 +90,7 @@ $(function () {
 			let totalCount = $(".question").length;
 			let currentNumber = $(".question:visible").data('num') + 1;
 			$('#questionNumber').html('Вопрос <strong>' + currentNumber + '</strong> из <strong>' + totalCount + '</strong>');
+			$("#nextQuestion").prop("disabled", true);
 		}
 
 		function addProgramToTable(table, program, profession) {
