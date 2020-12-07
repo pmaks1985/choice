@@ -55,15 +55,15 @@ table tbody tr td {
 }
 
 .who_is_studying {
-  min-width: 125px;
+  min-width: 170pt;
 }
 
 .program {
-  width: 35%;
+  min-width: 200pt;
 }
 
 .how_often {
-  width: 100px;
+  min-width: 100pt;
 }
 
 .number {
@@ -71,7 +71,7 @@ table tbody tr td {
 }
 
 .norma {
-  width: 100px;
+  min-width: 170pt;
 }
 
 .checking {
