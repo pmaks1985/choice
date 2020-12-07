@@ -75,14 +75,11 @@ $(function () {
 		);
 
 
-		// $(".question").each(function () {
-
-		// });
-
-
-		$(".question").on("click", "label input[type=radio]", function () { //проверка, выбран radio или нет для #nextQuestion
-			$("#nextQuestion").prop("disabled", false);
+		$(".question").on("click", function () { //проверка, выбран radio или нет для #nextQuestion
+			console.log("Hello_1!");
 		});
+
+
 
 
 
