@@ -78,6 +78,9 @@ $(function () {
 		$("body").on("click", ".question label input[type=radio]", function () { //проверка, выбран radio или нет для #nextQuestion
 			$("#nextQuestion").prop("disabled", false);
 		});
+		$("body").on("click", ".question:last label input[type=radio]", function () {
+			$("#get__value").prop("disabled", false);
+		});
 
 		function updateQuestionNumber() {
 			let totalCount = $(".question").length;
