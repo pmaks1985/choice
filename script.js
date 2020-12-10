@@ -46,10 +46,14 @@ $(function () {
 						),
 						success: function (data) {
 							$.each(data.questions, function (id, question) {
-									let html = '<div class="question" data-num="' + id + '">' + question.question + '<br>';
-
+									if (question.comment) {
+										var comment = "<small>" + question.comment + "</small><br>";
+									} else {
+										var comment = "";
+									}
+									let html = '<div class="question" data-num="' + id + '">' + question.question + '<br>' + comment;
 									$.each(question.answers, function (id, answer) {
-											html = html + "<input type='radio' name='" + question.id + "' id='" + answer.id + "'><label for='" + answer.id + "'>" + answer.answer + "</label><br>";
+											html = html + "<label><input type='radio' name='" + question.id + "' id='" + answer.id + "'>" + answer.answer + "</label><br>";
 										}
 
 									);
@@ -70,18 +74,35 @@ $(function () {
 
 		);
 
-		$(".question").on("change", "input[type=radio]", function () { //проверка, выбран radio или нет для #nextQuestion
+
+		$("body").on("click", ".question label input[type=radio]", function () { //проверка, выбран radio или нет для #nextQuestion
 			$("#nextQuestion").prop("disabled", false);
+		});
+		$("body").on("click", ".question:last label input[type=radio]", function () {
+			$("#get__value").prop("disabled", false);
 		});
 
 		function updateQuestionNumber() {
 			let totalCount = $(".question").length;
 			let currentNumber = $(".question:visible").data('num') + 1;
 			$('#questionNumber').html('Вопрос <strong>' + currentNumber + '</strong> из <strong>' + totalCount + '</strong>');
+			$("#nextQuestion").prop("disabled", true);
 		}
 
 		function addProgramToTable(table, program, profession) {
-			table.append("<tr class=\"program\"><td>" + ($("#programType" + program.programTypeId + " tr.program").length + 1) + "</td>" + "<td>" + profession.title + "<br>" + profession.comment + "</td>" + "<td>" + program.programTitle + "</td>" + "<td>" + program.programText + "</td>" + "<td>Как часто?</td>" + "<td>" + program.normativeDocument + "</td>" + "<td>" + program.inspector + "</td></tr>");
+			if (program.programExpire == "0") {
+				var year = "Бессрочно";
+			} else if (program.programExpire == "5") {
+				var year = "1 раз в " + program.programExpire + " лет";
+			} else if (program.programExpire == "1") {
+				var year = "1 раз в год"
+			} else {
+				var year = "1 раз в " + program.programExpire + " года";
+			}
+			table.append("<tr class=\"program\"><td>" + ($("#programType" + program.programTypeId + " tr.program").length + 1) +
+				"</td>" + "<td>" + profession.title + "<br>" + profession.comment + "</td>" + "<td>" + program.programTitle + "</td>" +
+				"<td>" + program.programText + "</td>" + "<td>" + year + "</td>" + "<td>" + program.normativeDocument +
+				"</td>" + "<td>" + program.inspector + "</td></tr>");
 		}
 
 		$("#nextQuestion").click(function () {
