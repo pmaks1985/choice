@@ -105,6 +105,22 @@ $(function () {
 				"</td>" + "<td>" + program.inspector + "</td></tr>");
 		}
 
+		function addProgramTypeToTable(table, programType, profession) {
+			if (programType.programExpire == "0") {
+				var year = "Бессрочно";
+			} else if (programType.programExpire == "5") {
+				var year = "1 раз в " + programType.programExpire + " лет";
+			} else if (programType.programExpire == "1") {
+				var year = "1 раз в год"
+			} else {
+				var year = "1 раз в " + programType.programExpire + " года";
+			}
+			table.append("<tr class=\"program\"><td>" + ($("#programType" + programType.programTypeId + " tr.program").length + 1) +
+				"</td>" + "<td>" + profession.title + "<br>" + profession.comment + "</td>" + "<td>" + programType.programTitle + "</td>" +
+				"<td>" + programType.programText + "</td>" + "<td>" + year + "</td>" + "<td>" + programType.normativeDocument +
+				"</td>" + "<td>" + programType.inspector + "</td></tr>");
+		}
+
 		$("#nextQuestion").click(function () {
 				let nextQuestion = $(".question:visible").hide().next();
 				nextQuestion.show();
@@ -137,12 +153,15 @@ $(function () {
 						method: 'post',
 						dataType: 'json',
 						data: JSON.stringify({
-								"answer1Id": firstAnswer,
-								"answers": finalСhoice
+								// "answer1Id": firstAnswer,
+								"answer1Id": 14,
+								// "answers": finalСhoice
+								"answers": [3, 16, 19]
 							}
 
 						),
 						success: function (data) {
+							console.log(data);
 							$.each(data.programs, function (id, program) {
 									$.each(program.professions, function (id, profession) {
 											if (!program.normativeDocument) {
@@ -170,6 +189,30 @@ $(function () {
 								}
 
 							);
+							$.each(data.programTypes, function (id, program) {
+								$.each(program.professions, function (id, profession) {
+									if (!program.normativeDocument) {
+										program.normativeDocument = "";
+									}
+
+									if (!program.inspector) {
+										program.inspector = "";
+									}
+
+									// ищем таблицу для нужного типа программ
+									var table = $("#programType" + program.programTypeId);
+
+									if (table.length == 0) {
+										// если такая таблица не найдена, то
+										$(".result").append("<table class='table table-bordered' id='programType" + program.programTypeId + "'><caption class='caption'>" + program.programTypeFullTitle + "</caption><tr><th rowspan='2' class='number'>№</th><th rowspan='2' class='who_is_studying'>Кто учится?</th><th colspan='2'>Программа</th><th rowspan='2' class='how_often'>Как часто?</th><th rowspan='2' class='norma'>Нормативное обоснование</th><th rowspan='2' class='checking'>Кто проверяет?</th></tr><tr><th class='code'>Код</th><th class='program'>Название программы</th></tr>");
+										addProgramToTable($("#programType" + program.programTypeId), program, profession);
+									} else {
+										// иначе добавляем в эту конкретную таблицу строку
+										addProgramToTable(table, program, profession);
+									}
+								});
+							});
+
 							$('#get__value').hide();
 						}
 					}
