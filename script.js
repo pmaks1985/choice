@@ -109,7 +109,7 @@ $(function () {
 			if (programType.programTypeExpire == "0") {
 				var year = "Бессрочно";
 			} else if (programType.programTypeExpire == "5") {
-				var year = "1 раз в " + programType.programExpire + " лет";
+				var year = "1 раз в " + programType.programTypeExpire + " лет";
 			} else if (programType.programTypeExpire == "1") {
 				var year = "1 раз в год"
 			} else {
@@ -154,9 +154,7 @@ $(function () {
 						dataType: 'json',
 						data: JSON.stringify({
 								"answer1Id": firstAnswer,
-								// "answer1Id": 14,
 								"answers": finalСhoice
-								// "answers": [3, 16, 19]
 							}
 
 						),
