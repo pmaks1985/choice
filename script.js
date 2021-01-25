@@ -11,7 +11,7 @@ $(function () {
 				$("#question .questionText").html(question.question);
 				firstQuestionId = question.id;
 				$.each(question.answers, function (id, answers) {
-					$("#question .questionAnswer").append("<label><input type='radio' name='answer' id='" + answers.id + "'>" + answers.answer + "</label><br>")
+					$("#question .questionAnswer").append("<label><input type='radio' name='answer' id='" + answers.id + "'>" + answers.answer + " <span>" + answers.comment + "</span></label><br>")
 				})
 			});
 			$('#questionNumber').html('Вопрос <strong>1</strong>');
