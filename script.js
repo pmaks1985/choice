@@ -46,16 +46,16 @@ $(function () {
 						html = '<div class="question question_hidden" data-num="' + id + '">' + question.question + '<br>' + comment;
 						$.each(question.answers, function (id, answer) {
 							if (firstQuestionAnswerId == answer.id) {
-								html = html + "<label><input type='radio' checked='checked' name='" + question.id + "' id='" + answer.id + "'>" + answer.answer + "</label><br>";
+								html = html + "<label><input type='radio' checked='checked' name='" + question.id + "' id='" + answer.id + "'>" + answer.answer + " <span>" + answer.comment + "</span></label><br>";
 							} else {
-								html = html + "<label><input type='radio' name='" + question.id + "' id='" + answer.id + "'>" + answer.answer + "</label><br>";
+								html = html + "<label><input type='radio' name='" + question.id + "' id='" + answer.id + "'>" + answer.answer + " <span>" + answer.comment + "</span></label><br>";
 							}
 						});
 						html = html + '</div>';
 					} else {
 						html = '<div class="question question_visible" data-num="' + id + '">' + question.question + '<br>' + comment;
 						$.each(question.answers, function (id, answer) {
-							html = html + "<label><input type='radio' name='" + question.id + "' id='" + answer.id + "'>" + answer.answer + "</label><br>";
+							html = html + "<label><input type='radio' name='" + question.id + "' id='" + answer.id + "'>" + answer.answer + " <span>" + answer.comment + "</span></label><br>";
 						});
 						html = html + '</div>';
 					}
