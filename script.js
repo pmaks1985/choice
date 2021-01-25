@@ -1,5 +1,6 @@
 $(function () {
-
+		var firstQuestionId;
+		var firstQuestionAnswerId;
 		$.ajax({
 
 				url: 'https://abdpo-lk.ru/lk/ChoosingProgramAlgo/choosingprogramquestions_api_ext.php?action=getFirstQuestion',
@@ -10,16 +11,16 @@ $(function () {
 				,
 				success: function (data) {
 					$.each(data.questions, function (id, question) {
-							$("#question .questionText").html(question.question);
+						$("#question .questionText").html(question.question);
+						firstQuestionId = question.id;
+						$.each(question.answers, function (id, answers) {
 
-							$.each(question.answers, function (id, answers) {
-									$("#question .questionAnswer").append("<label><input type='radio' name='answer' id='" + answers.id + "'>" + answers.answer + "</label><br>")
-								}
+								$("#question .questionAnswer").append("<label><input type='radio' name='answer' id='" + answers.id + "'>" + answers.answer + "</label><br>")
+							}
 
-							)
-						}
-
-					);
+						)
+					});
+					$('#questionNumber').html('Вопрос <strong>1</strong>');
 					$("#nextQuestion").hide();
 				}
 			}
@@ -32,7 +33,7 @@ $(function () {
 
 		$("#next").click(function () {
 				var answerId = $('input[type=radio][name=answer]:checked').attr('id');
-
+				firstQuestionAnswerId = answerId;
 				$.ajax({
 
 						url: 'https://abdpo-lk.ru/lk/ChoosingProgramAlgo/choosingprogramquestions_api_ext.php?action=getQuestions',
@@ -51,19 +52,32 @@ $(function () {
 									} else {
 										var comment = "";
 									}
-									let html = '<div class="question" data-num="' + id + '">' + question.question + '<br>' + comment;
-									$.each(question.answers, function (id, answer) {
-											html = html + "<label><input type='radio' name='" + question.id + "' id='" + answer.id + "'>" + answer.answer + "</label><br>";
-										}
+									var html;
+									if (question.id == firstQuestionId) {
+										html = '<div class="question question_hidden" data-num="' + id + '">' + question.question + '<br>' + comment;
+										$.each(question.answers, function (id, answer) {
+											if (firstQuestionAnswerId == answer.id) {
+												html = html + "<label><input type='radio' checked='checked' name='" + question.id + "' id='" + answer.id + "'>" + answer.answer + "</label><br>";
+											} else {
+												html = html + "<label><input type='radio' name='" + question.id + "' id='" + answer.id + "'>" + answer.answer + "</label><br>";
+											}
 
-									);
-									html = html + '</div>';
+										});
+										html = html + '</div>';
+									} else {
+										html = '<div class="question question_visible" data-num="' + id + '">' + question.question + '<br>' + comment;
+										$.each(question.answers, function (id, answer) {
+											html = html + "<label><input type='radio' name='" + question.id + "' id='" + answer.id + "'>" + answer.answer + "</label><br>";
+										});
+										html = html + '</div>';
+									}
+
 									$(".next__question").append(html);
 								}
 
 							);
 							$("#nextQuestion").show();
-							$(".question:first").show();
+							$(".question_visible:first").show();
 							$("#question").hide();
 							updateQuestionNumber();
 						}
@@ -75,16 +89,16 @@ $(function () {
 		);
 
 
-		$("body").on("click", ".question label input[type=radio]", function () { //проверка, выбран radio или нет для #nextQuestion
+		$("body").on("click", ".question_visible label input[type=radio]", function () { //проверка, выбран radio или нет для #nextQuestion
 			$("#nextQuestion").prop("disabled", false);
 		});
-		$("body").on("click", ".question:last label input[type=radio]", function () {
+		$("body").on("click", ".question_visible:last label input[type=radio]", function () {
 			$("#get__value").prop("disabled", false);
 		});
 
 		function updateQuestionNumber() {
-			let totalCount = $(".question").length;
-			let currentNumber = $(".question:visible").data('num') + 1;
+			let totalCount = $(".question_visible").length + 1;
+			let currentNumber = $(".question_visible:visible").data('num') + 1;
 			$('#questionNumber').html('Вопрос <strong>' + currentNumber + '</strong> из <strong>' + totalCount + '</strong>');
 			$("#nextQuestion").prop("disabled", true);
 		}
@@ -99,9 +113,14 @@ $(function () {
 			} else {
 				var year = "1 раз в " + program.programExpire + " года";
 			}
+			let programText = program.programText;
+			console.log(program);
+			if (program.url) {
+				programText = '<a href="/' + program.url + '" target="_blank">' + programText + '</a>';
+			}
 			table.append("<tr class=\"program\"><td>" + ($("#programType" + program.programTypeId + " tr.program").length + 1) +
 				"</td>" + "<td>" + profession.title + "<br>" + profession.comment + "</td>" + "<td>" + program.programTitle + "</td>" +
-				"<td>" + program.programText + "</td>" + "<td>" + year + "</td>" + "<td>" + program.normativeDocument +
+				"<td>" + programText + "</td>" + "<td>" + year + "</td>" + "<td>" + program.normativeDocument +
 				"</td>" + "<td>" + program.inspector + "</td></tr>");
 		}
 
@@ -115,14 +134,18 @@ $(function () {
 			} else {
 				var year = "1 раз в " + programType.programTypeExpire + " года";
 			}
+			let programFullName = programType.programTypeFullTitle;
+			if (programType.url) {
+				programFullName = '<a href="/' + programType.url + '" target="_blank">' + programFullName + '</a>';
+			}
 			table.append("<tr class=\"program\"><td>" + ($("#programType" + programType.programTypeId + " tr.program").length + 1) +
 				"</td>" + "<td>" + profession.title + "<br>" + profession.comment + "</td>" + "<td>" + programType.programTypeTitle + "</td>" +
-				"<td>" + programType.programTypeFullTitle + "</td>" + "<td>" + year + "</td>" + "<td>" + programType.normativeDocument +
+				"<td>" + programFullName + "</td>" + "<td>" + year + "</td>" + "<td>" + programType.normativeDocument +
 				"</td>" + "<td>" + programType.inspector + "</td></tr>");
 		}
 
 		$("#nextQuestion").click(function () {
-				let nextQuestion = $(".question:visible").hide().next();
+				let nextQuestion = $(".question_visible:visible").hide().next();
 				nextQuestion.show();
 
 				if (nextQuestion.next().length == 0) {

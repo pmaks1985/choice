@@ -85,4 +85,8 @@ table tbody tr td {
 input[type=radio] {
   margin-right: 5px;
 }
+
+.question_hidden {
+  display: none;
+}
 /*# sourceMappingURL=style.css.map */
