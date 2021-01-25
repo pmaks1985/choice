@@ -120,8 +120,8 @@ $(function () {
 			}
 			table.append("<tr class=\"program\"><td>" + ($("#programType" + program.programTypeId + " tr.program").length + 1) +
 				"</td>" + "<td>" + profession.title + "<br>" + profession.comment + "</td>" + "<td>" + program.programTitle + "</td>" +
-				"<td>" + programText + "</td>" + "<td>" + year + "</td>" + "<td>" + program.normativeDocument +
-				"</td>" + "<td>" + program.inspector + "</td></tr>");
+				"<td>" + programText + "</td>" + "<td>" + year + "</td>" + "<td><small>" + program.normativeDocument +
+				"</small></td>" + "<td>" + program.inspector + "</td></tr>");
 		}
 
 		function addProgramTypeToTable(table, programType, profession) {
@@ -140,8 +140,8 @@ $(function () {
 			}
 			table.append("<tr class=\"program\"><td>" + ($("#programType" + programType.programTypeId + " tr.program").length + 1) +
 				"</td>" + "<td>" + profession.title + "<br>" + profession.comment + "</td>" + "<td>" + programType.programTypeTitle + "</td>" +
-				"<td>" + programFullName + "</td>" + "<td>" + year + "</td>" + "<td>" + programType.normativeDocument +
-				"</td>" + "<td>" + programType.inspector + "</td></tr>");
+				"<td>" + programFullName + "</td>" + "<td>" + year + "</td>" + "<td><small>" + programType.normativeDocument +
+				"</small></td>" + "<td>" + programType.inspector + "</td></tr>");
 		}
 
 		$("#nextQuestion").click(function () {
